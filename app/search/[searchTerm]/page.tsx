@@ -46,3 +46,9 @@ export default async function SearchResults({
     </div>
   );
 }
+
+export async function generateMetadata({ params: { searchTerm } }: PageProps) {
+  return {
+    title: `Search results for: ${searchTerm}`,
+  };
+}
