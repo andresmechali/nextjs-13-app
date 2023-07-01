@@ -52,3 +52,10 @@ export async function generateStaticParams() {
 
   return todos.splice(0, 10).map(({ id }) => ({ todoId: id.toString() }));
 }
+
+// This will generate the dynamic metadata for each page
+export async function generateMetadata({ params: { todoId } }: PageProps) {
+  return {
+    title: `Todo page: ${todoId}`,
+  };
+}

@@ -6,7 +6,7 @@ import Header from "@/app/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Next 13 App",
+  title: "Next 13 App 2",
   description: "Dummy app for exploring Next.js 13",
 };
 

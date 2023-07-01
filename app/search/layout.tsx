@@ -1,6 +1,11 @@
 import React from "react";
 import Search from "@/app/search/Search";
 
+export const metadata = {
+  title: "Search page",
+  description: "Page that allows searching from SerpApi",
+};
+
 export default function SearchLayout({
   children,
 }: {

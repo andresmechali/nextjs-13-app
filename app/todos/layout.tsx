@@ -1,6 +1,10 @@
 import React from "react";
 import TodosList from "@/app/todos/TodosList";
 
+export const metadata = {
+  title: "Todo page",
+  description: "Page that lists all the todos",
+};
 export default function RootLayout({
   children,
 }: {
