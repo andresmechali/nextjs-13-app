@@ -1,4 +1,4 @@
-import TodosList from "@/app/todos/TodosList";
+import TodosList from "@/app/(user)/todos/TodosList";
 
 export default function Todos() {
   return (

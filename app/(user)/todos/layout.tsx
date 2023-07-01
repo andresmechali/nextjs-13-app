@@ -1,5 +1,5 @@
 import React from "react";
-import TodosList from "@/app/todos/TodosList";
+import TodosList from "@/app/(user)/todos/TodosList";
 
 export const metadata = {
   title: "Todo page",

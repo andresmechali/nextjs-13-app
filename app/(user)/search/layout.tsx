@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "@/app/search/Search";
+import Search from "@/app/(user)/search/Search";
 
 export const metadata = {
   title: "Search page",
