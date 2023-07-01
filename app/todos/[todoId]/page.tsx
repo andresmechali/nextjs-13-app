@@ -1,4 +1,5 @@
 import { Todo } from "@/typings";
+import { notFound } from "next/navigation";
 
 type PageProps = {
   params: {
@@ -8,7 +9,14 @@ type PageProps = {
 
 const fetchTodo = async (todoId: string) => {
   const res = await fetch(
-    `https://jsonplaceholder.typicode.com/todos/${todoId}`
+    `https://jsonplaceholder.typicode.com/todos/${todoId}`,
+    {
+      next: {
+        // This is fetched, cached, and used for server-side rendering the component.
+        // This content will stay static until it is revalidated.
+        revalidate: 60, // Next.js will revalidate after 60 seconds
+      },
+    }
   );
 
   const todo: Todo = await res.json();
@@ -19,8 +27,12 @@ const fetchTodo = async (todoId: string) => {
 export default async function TodoPage({ params: { todoId } }: PageProps) {
   const todo = await fetchTodo(todoId);
 
+  if (!todo.id) {
+    return notFound();
+  }
+
   return (
-    <div className="p-10 bg-yellow-100 border-2 m-2 shadow-lg text-black">
+    <div className="p-10 bg-yellow-100 m-2 shadow-lg text-black">
       <p>
         #{todo.id}: {todo.title}
       </p>
@@ -30,4 +42,13 @@ export default async function TodoPage({ params: { todoId } }: PageProps) {
       </p>
     </div>
   );
+}
+
+// This will tell Next.js how to generate the static pages for every todo
+export async function generateStaticParams() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+
+  const todos: Todo[] = await res.json();
+
+  return todos.splice(0, 10).map(({ id }) => ({ todoId: id.toString() }));
 }
